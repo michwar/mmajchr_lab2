@@ -5,4 +5,7 @@ public class FileOperation {
 	public FileOperation() {
 	}
 
+	public void saveFile(String fileName, String correctString, String incorrectString) {
+
+	}
 }
