@@ -2,6 +2,8 @@ package zpi_lab2.zpi_lab2;
 
 import java.util.Scanner;
 
+import lab2lib.lab2lib.FirstCallback;
+
 public class App {
 	public static void main(String[] args) {
 		String fileName;
@@ -18,6 +20,8 @@ public class App {
 
 		System.out.print("Podaj niepoprawny string: ");
 		incorrectString = scan.nextLine();
-
+		
+		FirstCallback firstCallback;
+		FileOperation fileOperation = new FileOperation();
 	}
 }
