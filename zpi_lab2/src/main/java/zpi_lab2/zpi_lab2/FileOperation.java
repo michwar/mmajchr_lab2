@@ -13,7 +13,15 @@ public class FileOperation {
 		mFirstCallback = firstCallback;
 	}
 
-	public void saveFile(String fileName, String correctString, String incorrectString) {
+	public void saveFile(final String fileName, final String correctString, final String incorrectString) {
+		String result = fileName;
+		while (null != result) {
+			result = saveNewFile(result, correctString, incorrectString);
+		}
+	}
 
+	private String saveNewFile(String result, String correctString, String incorrectString) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
