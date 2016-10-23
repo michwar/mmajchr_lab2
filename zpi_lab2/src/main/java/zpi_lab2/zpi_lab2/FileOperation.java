@@ -1,6 +1,8 @@
 package zpi_lab2.zpi_lab2;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import lab2lib.lab2lib.FirstCallback;
 import lab2lib.lab2lib.SaveResult;
@@ -30,7 +32,21 @@ public class FileOperation {
 		String result;
 		SaveResult saveResult = new SaveResult(fileName, correctString, incorrectString);
 		SecondCallback seconCallback = new SecondCallbackImpl(saveResult);
-		
+
+		try {
+			file = new File(fileName + ".txt");
+			if (!file.exists()) {
+				file.createNewFile();
+			}
+			try (FileWriter fw = new FileWriter(file)) {
+				fw.write("Hello World");
+				fw.flush();
+			}
+			System.out.println(correctString);
+			saveResult.setSuccess(true);
+		} catch (IOException e) {
+			saveResult.setSuccess(false);
+		}
 		return result;
 	}
 }
