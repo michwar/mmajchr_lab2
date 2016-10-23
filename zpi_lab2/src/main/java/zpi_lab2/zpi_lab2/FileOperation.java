@@ -45,6 +45,7 @@ public class FileOperation {
 			System.out.println(correctString);
 			saveResult.setSuccess(true);
 		} catch (IOException e) {
+			System.out.println(incorrectString);
 			saveResult.setSuccess(false);
 		}
 		return result;
