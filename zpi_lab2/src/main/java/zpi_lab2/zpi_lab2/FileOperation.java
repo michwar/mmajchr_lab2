@@ -44,9 +44,11 @@ public class FileOperation {
 			}
 			System.out.println(correctString);
 			saveResult.setSuccess(true);
+			result = mFirstCallback.callback(seconCallback);
 		} catch (IOException e) {
 			System.out.println(incorrectString);
 			saveResult.setSuccess(false);
+			result = mFirstCallback.callback(seconCallback);
 		}
 		return result;
 	}
