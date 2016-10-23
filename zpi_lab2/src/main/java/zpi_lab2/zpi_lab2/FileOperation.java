@@ -1,6 +1,11 @@
 package zpi_lab2.zpi_lab2;
 
+import java.io.File;
+
 import lab2lib.lab2lib.FirstCallback;
+import lab2lib.lab2lib.SaveResult;
+import lab2lib.lab2lib.SecondCallback;
+import lab2lib.lab2lib.SecondCallbackImpl;
 
 public class FileOperation {
 
@@ -20,8 +25,12 @@ public class FileOperation {
 		}
 	}
 
-	private String saveNewFile(String result, String correctString, String incorrectString) {
-		// TODO Auto-generated method stub
-		return null;
+	private String saveNewFile(String fileName, String correctString, String incorrectString) {
+		File file = null;
+		String result;
+		SaveResult saveResult = new SaveResult(fileName, correctString, incorrectString);
+		SecondCallback seconCallback = new SecondCallbackImpl(saveResult);
+		
+		return result;
 	}
 }
