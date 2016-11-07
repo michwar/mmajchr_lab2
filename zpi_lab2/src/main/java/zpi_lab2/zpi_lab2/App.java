@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import lab2lib.lab2lib.OnCloseCallback;
@@ -12,6 +13,7 @@ public class App extends Application implements Close {
 	
 	private OnCloseCallback onCloseCallback;
 	private TextArea textOut;
+	private TextField textIn;
 
 	public static void main(String[] args) {
 		launch(args);
@@ -23,6 +25,8 @@ public class App extends Application implements Close {
 		textOut = new TextArea();
 		textOut.setEditable(false);
 		root.setCenter(textOut);
+		textIn = new TextField();
+		root.setBottom(textIn);
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
 		setExplicitExit(primaryStage);
