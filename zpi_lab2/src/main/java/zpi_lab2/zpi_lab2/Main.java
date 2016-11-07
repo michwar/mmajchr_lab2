@@ -7,9 +7,11 @@ import lab2lib.lab2lib.SimpleUserInterface;
 public class Main implements Runnable {
 	
 	private SimpleUserInterface ui;
+	private Close cl;
 	
-	public Main(SimpleUserInterface ui) {
+	public Main(SimpleUserInterface ui, Close cl) {
 		this.ui = ui;
+		this.cl = cl;
 	}
 
 	@Override

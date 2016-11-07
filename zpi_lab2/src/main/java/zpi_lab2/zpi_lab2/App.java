@@ -42,7 +42,7 @@ public class App extends Application implements Close {
 	}
 	
 	private void runMain() {
-		Main mainRun = new Main(SimpleConsole.getInstance());
+		Main mainRun = new Main(SimpleConsole.getInstance(), this);
 		Thread mainThread = new Thread(mainRun, "Main app code thread.");
 		mainThread.setDaemon(true);
 		mainThread.start();
