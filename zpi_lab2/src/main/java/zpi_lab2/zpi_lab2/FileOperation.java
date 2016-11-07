@@ -8,16 +8,19 @@ import lab2lib.lab2lib.FirstCallback;
 import lab2lib.lab2lib.SaveResult;
 import lab2lib.lab2lib.SecondCallback;
 import lab2lib.lab2lib.SecondCallbackImpl;
+import lab2lib.lab2lib.SimpleUserInterface;
 
 public class FileOperation {
 
+	private SimpleUserInterface ui;
 	private FirstCallback mFirstCallback;
 
 	public FileOperation() {
 	}
 
-	public FileOperation(FirstCallback firstCallback) {
+	public FileOperation(FirstCallback firstCallback, SimpleUserInterface ui) {
 		mFirstCallback = firstCallback;
+		this.ui = ui;
 	}
 
 	public void saveFile(final String fileName, final String correctString, final String incorrectString) {
