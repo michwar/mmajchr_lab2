@@ -5,7 +5,7 @@ import javafx.application.Platform;
 import javafx.stage.Stage;
 import lab2lib.lab2lib.OnCloseCallback;
 
-public class App extends Application {
+public class App extends Application implements Close {
 	
 	private OnCloseCallback onCloseCallback;
 
@@ -19,11 +19,13 @@ public class App extends Application {
 		primaryStage.show();
 		runMain();
 	}
-	
+
+	@Override
 	public OnCloseCallback getOnCloseCallback() {
 		return onCloseCallback;
 	}
 
+	@Override
 	public void setOnCloseCallback(OnCloseCallback onCloseCallback) {
 		this.onCloseCallback = onCloseCallback;
 	}
