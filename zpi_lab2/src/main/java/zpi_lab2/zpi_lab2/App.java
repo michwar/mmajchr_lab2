@@ -24,6 +24,8 @@ public class App extends Application implements Close, SimpleUserInterface {
 	private Button btnOK;
 	private Semaphore semaphore = new Semaphore(0, true);
 	private String inputStr;
+	private Semaphore semYN = new Semaphore(0, true);
+	private boolean inYN;
 
 	public static void main(String[] args) {
 		launch(args);
@@ -99,8 +101,19 @@ public class App extends Application implements Close, SimpleUserInterface {
 
 	@Override
 	public boolean promptYesNo(String promptMsg) {
-		Alert alert = new Alert(AlertType.CONFIRMATION, promptMsg, ButtonType.YES, ButtonType.NO);
-		return alert.showAndWait().map(ButtonType.YES::equals).orElse(false);
+		for(;;) {
+			try {
+				Platform.runLater(() -> {
+					Alert alert = new Alert(AlertType.CONFIRMATION, promptMsg, ButtonType.YES, ButtonType.NO);
+					inYN = alert.showAndWait().map(ButtonType.YES::equals).orElse(false);
+					semYN.release();
+				});
+				semYN.acquire();
+				return inYN;
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@Override
