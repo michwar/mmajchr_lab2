@@ -20,7 +20,7 @@ public class App {
 		incorrectString = ui.prompt("Podaj niepoprawny string: ");
 		
 		FirstCallback firstCallback = new FirstCallbackImpl(ui);
-		FileOperation fileOperation = new FileOperation(firstCallback);
+		FileOperation fileOperation = new FileOperation(firstCallback, ui);
 		fileOperation.saveFile(fileName, corectString, incorrectString);
 		
 	}
