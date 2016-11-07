@@ -11,18 +11,15 @@ public class App {
 		String corectString;
 		String incorrectString;
 
-		Scanner scan = new Scanner(System.in);
+		SimpleConsole ui = SimpleConsole.getInstance();
 
-		System.out.print("Podaj nazwe pliku: ");
-		fileName = scan.nextLine();
+		fileName = ui.prompt("Podaj nazwe pliku: ");
 
-		System.out.print("Podaj poprawny string: ");
-		corectString = scan.nextLine();
+		corectString = ui.prompt("Podaj poprawny string: ");
 
-		System.out.print("Podaj niepoprawny string: ");
-		incorrectString = scan.nextLine();
+		incorrectString = ui.prompt("Podaj niepoprawny string: ");
 		
-		FirstCallback firstCallback = new FirstCallbackImpl(SimpleConsole.getInstance());
+		FirstCallback firstCallback = new FirstCallbackImpl(ui);
 		FileOperation fileOperation = new FileOperation(firstCallback);
 		fileOperation.saveFile(fileName, corectString, incorrectString);
 		
