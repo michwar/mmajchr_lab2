@@ -85,7 +85,7 @@ public class App extends Application implements Close, SimpleUserInterface {
 
 	@Override
 	public void show(String message) {
-		textOut.appendText(message);
+		textOut.appendText(message + "\n");
 	}
 
 }
