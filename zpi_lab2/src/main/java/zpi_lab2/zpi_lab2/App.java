@@ -14,6 +14,12 @@ public class App extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		setExplicitExit(primaryStage);
+		primaryStage.show();
+		runMain();
+	}
+	
+	private void setExplicitExit(Stage primaryStage) {
 		OnCloseCallback onCloseCallback = new OnCloseCallbackImpl(SimpleConsole.getInstance());
 		Platform.setImplicitExit(false);
 		primaryStage.setOnCloseRequest(ev -> {
@@ -23,8 +29,6 @@ public class App extends Application {
 				ev.consume();
 			}
 		});
-		primaryStage.show();
-		runMain();
 	}
 	
 	private void runMain() {
