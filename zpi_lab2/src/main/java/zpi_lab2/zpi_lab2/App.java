@@ -14,6 +14,7 @@ public class App extends Application {
 		primaryStage.show();
 		Main mainRun = new Main(SimpleConsole.getInstance());
 		Thread mainThread = new Thread(mainRun, "Main app code thread.");
+		mainThread.setDaemon(true);
 		mainThread.start();
 	}
 
