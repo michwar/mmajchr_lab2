@@ -17,7 +17,10 @@ public class SimpleConsole implements SimpleUserInterface {
 	private Scanner scanner;
 	
 	private SimpleConsole() {
-		;
+		this.console = System.console();
+		this.printWriter = this.console.writer();
+		this.reader = this.console.reader();
+		this.scanner = new Scanner(this.reader);
 	}
 	
 	public static SimpleConsole getInstance() {
