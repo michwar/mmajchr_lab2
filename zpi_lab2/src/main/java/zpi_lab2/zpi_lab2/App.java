@@ -22,10 +22,10 @@ public class App extends Application implements Close, SimpleUserInterface {
 	private TextArea textOut;
 	private TextField textIn;
 	private Button btnOK;
-	private Semaphore semaphore = new Semaphore(0, true);
+	private Semaphore semStr = new Semaphore(0, false);
 	private String inputStr;
-	private Semaphore semYN = new Semaphore(0, true);
-	private boolean inYN;
+	private Semaphore semYN = new Semaphore(0, false);
+	private boolean inputYN;
 
 	public static void main(String[] args) {
 		launch(args);
@@ -46,7 +46,7 @@ public class App extends Application implements Close, SimpleUserInterface {
 		btnOK.setOnAction(ev -> {
 			inputStr = textIn.getText();
 			btnOK.setDisable(true);
-			semaphore.release();
+			semStr.release();
 		});
 		bottom.setRight(btnOK);
 		root.setBottom(bottom);
@@ -99,7 +99,7 @@ public class App extends Application implements Close, SimpleUserInterface {
 			try {
 				show(promptMsg);
 				btnOK.setDisable(false);
-				semaphore.acquire();
+				semStr.acquire();
 				return inputStr;
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -111,13 +111,13 @@ public class App extends Application implements Close, SimpleUserInterface {
 	public boolean promptYesNo(String promptMsg) {
 		for(;;) {
 			try {
-				Platform.runLater(() -> {
+				runOnUIThread(() -> {
 					Alert alert = new Alert(AlertType.CONFIRMATION, promptMsg, ButtonType.YES, ButtonType.NO);
-					inYN = alert.showAndWait().map(ButtonType.YES::equals).orElse(false);
+					inputYN = alert.showAndWait().map(ButtonType.YES::equals).orElse(false);
 					semYN.release();
 				});
 				semYN.acquire();
-				return inYN;
+				return inputYN;
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
