@@ -1,5 +1,7 @@
 package zpi_lab2.zpi_lab2;
 
+import java.util.concurrent.Semaphore;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -20,6 +22,7 @@ public class App extends Application implements Close, SimpleUserInterface {
 	private TextArea textOut;
 	private TextField textIn;
 	private Button btnOK;
+	private Semaphore semaphore = new Semaphore(0, true);
 
 	public static void main(String[] args) {
 		launch(args);
