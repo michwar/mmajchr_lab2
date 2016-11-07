@@ -1,6 +1,7 @@
 package zpi_lab2.zpi_lab2;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 
 public class App extends Application {
@@ -11,6 +12,10 @@ public class App extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		Platform.setImplicitExit(false);
+		primaryStage.setOnCloseRequest(ev -> {
+			Platform.exit();
+		});
 		primaryStage.show();
 		runMain();
 	}
