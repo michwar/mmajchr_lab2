@@ -30,8 +30,15 @@ public class SimpleConsole implements SimpleUserInterface {
 	}
 
 	@Override
-	public boolean promptYesNo(String prompt) {
-		return false;
+	public boolean promptYesNo(String promptMsg) {
+		for(;;) {
+			String c = prompt(promptMsg + "[T/N]");
+			if(c.startsWith("T") || c.startsWith("t")) {
+				return true;
+			} else if(c.startsWith("N") || c.startsWith("n")) {
+				return false;
+			}
+		}
 	}
 
 }
