@@ -6,6 +6,10 @@ public class SimpleConsole implements SimpleUserInterface {
 	
 	private static SimpleConsole instance = new SimpleConsole();
 	
+	private SimpleConsole() {
+		;
+	}
+	
 	public static SimpleConsole getInstance() {
 		return instance;
 	}
