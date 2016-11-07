@@ -12,6 +12,10 @@ public class App extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.show();
+		runMain();
+	}
+	
+	private void runMain() {
 		Main mainRun = new Main(SimpleConsole.getInstance());
 		Thread mainThread = new Thread(mainRun, "Main app code thread.");
 		mainThread.setDaemon(true);
