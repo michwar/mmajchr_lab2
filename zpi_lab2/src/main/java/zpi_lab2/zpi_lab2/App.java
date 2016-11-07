@@ -8,6 +8,11 @@ import lab2lib.lab2lib.FirstCallbackImpl;
 public class App extends Application {
 
 	public static void main(String[] args) {
+		launch(args);
+	}
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
 		String fileName;
 		String corectString;
 		String incorrectString;
@@ -23,11 +28,6 @@ public class App extends Application {
 		FirstCallback firstCallback = new FirstCallbackImpl(ui);
 		FileOperation fileOperation = new FileOperation(firstCallback, ui);
 		fileOperation.saveFile(fileName, corectString, incorrectString);
-		
-	}
-
-	@Override
-	public void start(Stage primaryStage) throws Exception {
 	}
 
 }
