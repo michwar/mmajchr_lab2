@@ -31,6 +31,8 @@ public class App extends Application implements Close {
 		textIn = new TextField();
 		bottom.setCenter(textIn);
 		btnOK = new Button("OK");
+		btnOK.setDefaultButton(true);
+		btnOK.setDisable(true);
 		bottom.setRight(btnOK);
 		root.setBottom(bottom);
 		Scene scene = new Scene(root);
