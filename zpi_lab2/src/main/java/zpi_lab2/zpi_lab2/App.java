@@ -48,6 +48,7 @@ public class App extends Application implements Close, SimpleUserInterface {
 		btnOK.setOnAction(ev -> {
 			inputStr = textIn.getText();
 			btnOK.setDisable(true);
+			textIn.clear();
 			semStr.release();
 		});
 		bottom.setRight(btnOK);
