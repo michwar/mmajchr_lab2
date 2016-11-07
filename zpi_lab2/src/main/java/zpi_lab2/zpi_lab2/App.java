@@ -102,10 +102,11 @@ public class App extends Application implements Close, SimpleUserInterface {
 			try {
 				mtxStr.acquire();
 				runOnUIThread(() -> {
-					show(promptMsg);
+					textOut.appendText(promptMsg);
 					btnOK.setDisable(false);
 				});
 				semStr.acquire();
+				show(inputStr);
 				mtxStr.release();
 				return inputStr;
 			} catch (InterruptedException e) {
