@@ -28,8 +28,9 @@ public class SimpleConsole implements SimpleUserInterface {
 	}
 
 	@Override
-	public String prompt(String arg0) {
-		return null;
+	public String prompt(String prompt) {
+		printWriter.print(prompt);
+		return scanner.nextLine();
 	}
 
 	@Override
