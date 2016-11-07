@@ -33,7 +33,8 @@ public class SimpleConsole implements SimpleUserInterface {
 	}
 
 	@Override
-	public void show(String arg0) {
+	public void show(String message) {
+		printWriter.println(message);
 	}
 
 }
