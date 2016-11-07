@@ -1,10 +1,20 @@
 package zpi_lab2.zpi_lab2;
 
+import java.io.Console;
+import java.io.PrintWriter;
+import java.io.Reader;
+import java.util.Scanner;
+
 import lab2lib.lab2lib.SimpleUserInterface;
 
 public class SimpleConsole implements SimpleUserInterface {
 	
 	private static SimpleConsole instance = new SimpleConsole();
+	
+	private Console console;
+	private PrintWriter printWriter;
+	private Reader reader;
+	private Scanner scanner;
 	
 	private SimpleConsole() {
 		;
