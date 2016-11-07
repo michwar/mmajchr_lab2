@@ -3,7 +3,10 @@ package zpi_lab2.zpi_lab2;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -79,8 +82,8 @@ public class App extends Application implements Close, SimpleUserInterface {
 
 	@Override
 	public boolean promptYesNo(String promptMsg) {
-		prompt(promptMsg);
-		return false;
+		Alert alert = new Alert(AlertType.CONFIRMATION, promptMsg, ButtonType.YES, ButtonType.NO);
+		return alert.showAndWait().map(ButtonType.YES::equals).orElse(false);
 	}
 
 	@Override
