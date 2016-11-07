@@ -3,6 +3,8 @@ package zpi_lab2.zpi_lab2;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
+import lab2lib.lab2lib.OnCloseCallback;
+import lab2lib.lab2lib.OnCloseCallbackImpl;
 
 public class App extends Application {
 
@@ -12,6 +14,7 @@ public class App extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		OnCloseCallback onCloseCallback = new OnCloseCallbackImpl(SimpleConsole.getInstance());
 		Platform.setImplicitExit(false);
 		primaryStage.setOnCloseRequest(ev -> {
 			Platform.exit();
