@@ -29,4 +29,9 @@ public class SimpleConsole implements SimpleUserInterface {
 		System.out.println(message);
 	}
 
+	@Override
+	public boolean promptYesNo(String prompt) {
+		return false;
+	}
+
 }
