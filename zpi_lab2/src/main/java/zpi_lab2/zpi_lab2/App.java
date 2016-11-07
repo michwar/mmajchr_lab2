@@ -22,7 +22,7 @@ public class App {
 		System.out.print("Podaj niepoprawny string: ");
 		incorrectString = scan.nextLine();
 		
-		FirstCallback firstCallback = new FirstCallbackImpl(scan);
+		FirstCallback firstCallback = new FirstCallbackImpl(SimpleConsole.getInstance());
 		FileOperation fileOperation = new FileOperation(firstCallback);
 		fileOperation.saveFile(fileName, corectString, incorrectString);
 		
