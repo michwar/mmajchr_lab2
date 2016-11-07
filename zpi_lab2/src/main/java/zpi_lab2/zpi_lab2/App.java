@@ -4,9 +4,10 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 import lab2lib.lab2lib.OnCloseCallback;
-import lab2lib.lab2lib.OnCloseCallbackImpl;
 
 public class App extends Application {
+	
+	private OnCloseCallback onCloseCallback;
 
 	public static void main(String[] args) {
 		launch(args);
@@ -19,11 +20,18 @@ public class App extends Application {
 		runMain();
 	}
 	
+	public OnCloseCallback getOnCloseCallback() {
+		return onCloseCallback;
+	}
+
+	public void setOnCloseCallback(OnCloseCallback onCloseCallback) {
+		this.onCloseCallback = onCloseCallback;
+	}
+
 	private void setExplicitExit(Stage primaryStage) {
-		OnCloseCallback onCloseCallback = new OnCloseCallbackImpl(SimpleConsole.getInstance());
 		Platform.setImplicitExit(false);
 		primaryStage.setOnCloseRequest(ev -> {
-			if(onCloseCallback.closing()) {
+			if(onCloseCallback == null || onCloseCallback.closing()) {
 				Platform.exit();
 			} else {
 				ev.consume();
