@@ -85,6 +85,14 @@ public class App extends Application implements Close, SimpleUserInterface {
 		mainThread.start();
 	}
 
+	public static void runOnUIThread(Runnable runnable) {
+		if(Platform.isFxApplicationThread()) {
+			runnable.run();
+		} else {
+			Platform.runLater(runnable);
+		}
+	}
+
 	@Override
 	public String prompt(String promptMsg) {
 		for(;;) {
