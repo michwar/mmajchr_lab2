@@ -17,7 +17,11 @@ public class App extends Application {
 		OnCloseCallback onCloseCallback = new OnCloseCallbackImpl(SimpleConsole.getInstance());
 		Platform.setImplicitExit(false);
 		primaryStage.setOnCloseRequest(ev -> {
-			Platform.exit();
+			if(onCloseCallback.closing()) {
+				Platform.exit();
+			} else {
+				ev.consume();
+			}
 		});
 		primaryStage.show();
 		runMain();
