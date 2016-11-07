@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import lab2lib.lab2lib.OnCloseCallback;
 
@@ -28,11 +27,11 @@ public class App extends Application implements Close {
 		textOut = new TextArea();
 		textOut.setEditable(false);
 		root.setCenter(textOut);
-		HBox bottom = new HBox();
+		BorderPane bottom = new BorderPane();
 		textIn = new TextField();
-		bottom.getChildren().add(textIn);
+		bottom.setCenter(textIn);
 		btnOK = new Button("OK");
-		bottom.getChildren().add(btnOK);
+		bottom.setRight(btnOK);
 		root.setBottom(bottom);
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
