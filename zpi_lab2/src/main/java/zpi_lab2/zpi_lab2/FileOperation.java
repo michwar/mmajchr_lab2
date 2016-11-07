@@ -45,11 +45,11 @@ public class FileOperation {
 				fw.write("Hello World");
 				fw.flush();
 			}
-			System.out.println(correctString);
+			ui.show(correctString);
 			saveResult.setSuccess(true);
 			result = mFirstCallback.callback(seconCallback);
 		} catch (IOException e) {
-			System.out.println(incorrectString);
+			ui.show(incorrectString);
 			saveResult.setSuccess(false);
 			result = mFirstCallback.callback(seconCallback);
 		}
