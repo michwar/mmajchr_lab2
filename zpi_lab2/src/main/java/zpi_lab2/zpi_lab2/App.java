@@ -23,6 +23,7 @@ public class App extends Application implements Close, SimpleUserInterface {
 	private TextField textIn;
 	private Button btnOK;
 	private Semaphore semaphore = new Semaphore(0, true);
+	private String inputStr;
 
 	public static void main(String[] args) {
 		launch(args);
@@ -40,6 +41,11 @@ public class App extends Application implements Close, SimpleUserInterface {
 		btnOK = new Button("OK");
 		btnOK.setDefaultButton(true);
 		btnOK.setDisable(true);
+		btnOK.setOnAction(ev -> {
+			inputStr = textIn.getText();
+			btnOK.setDisable(true);
+			semaphore.release();
+		});
 		bottom.setRight(btnOK);
 		root.setBottom(bottom);
 		Scene scene = new Scene(root);
@@ -79,8 +85,16 @@ public class App extends Application implements Close, SimpleUserInterface {
 
 	@Override
 	public String prompt(String promptMsg) {
-		show(promptMsg);
-		return null;
+		for(;;) {
+			try {
+				show(promptMsg);
+				btnOK.setDisable(false);
+				semaphore.acquire();
+				return inputStr;
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@Override
