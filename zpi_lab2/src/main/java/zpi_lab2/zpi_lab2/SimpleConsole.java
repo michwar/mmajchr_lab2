@@ -1,8 +1,5 @@
 package zpi_lab2.zpi_lab2;
 
-import java.io.Console;
-import java.io.PrintWriter;
-import java.io.Reader;
 import java.util.Scanner;
 
 import lab2lib.lab2lib.SimpleUserInterface;
@@ -10,17 +7,11 @@ import lab2lib.lab2lib.SimpleUserInterface;
 public class SimpleConsole implements SimpleUserInterface {
 	
 	private static SimpleConsole instance = new SimpleConsole();
-	
-	private Console console;
-	private PrintWriter printWriter;
-	private Reader reader;
+
 	private Scanner scanner;
 	
 	private SimpleConsole() {
-		this.console = System.console();
-		this.printWriter = this.console.writer();
-		this.reader = this.console.reader();
-		this.scanner = new Scanner(this.reader);
+		this.scanner = new Scanner(System.in);
 	}
 	
 	public static SimpleConsole getInstance() {
@@ -29,13 +20,13 @@ public class SimpleConsole implements SimpleUserInterface {
 
 	@Override
 	public String prompt(String prompt) {
-		printWriter.print(prompt);
+		System.out.print(prompt);
 		return scanner.nextLine();
 	}
 
 	@Override
 	public void show(String message) {
-		printWriter.println(message);
+		System.out.println(message);
 	}
 
 }
