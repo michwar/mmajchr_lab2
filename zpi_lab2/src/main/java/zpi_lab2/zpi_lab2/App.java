@@ -11,7 +11,7 @@ public class App extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Main mainRun = new Main();
+		Main mainRun = new Main(SimpleConsole.getInstance());
 		Thread mainThread = new Thread(mainRun, "Main app code thread.");
 		mainThread.start();
 	}
