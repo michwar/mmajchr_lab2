@@ -72,21 +72,20 @@ public class App extends Application implements Close, SimpleUserInterface {
 	}
 
 	@Override
-	public String prompt(String arg0) {
-		// TODO Auto-generated method stub
+	public String prompt(String promptMsg) {
+		show(promptMsg);
 		return null;
 	}
 
 	@Override
-	public boolean promptYesNo(String arg0) {
-		// TODO Auto-generated method stub
+	public boolean promptYesNo(String promptMsg) {
+		prompt(promptMsg);
 		return false;
 	}
 
 	@Override
-	public void show(String arg0) {
-		// TODO Auto-generated method stub
-		
+	public void show(String message) {
+		textOut.appendText(message);
 	}
 
 }
