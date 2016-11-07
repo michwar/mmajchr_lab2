@@ -19,7 +19,7 @@ public class SimpleConsole implements SimpleUserInterface {
 	}
 
 	@Override
-	public String prompt(String prompt) {
+	public synchronized String prompt(String prompt) {
 		System.out.print(prompt);
 		return scanner.nextLine();
 	}
