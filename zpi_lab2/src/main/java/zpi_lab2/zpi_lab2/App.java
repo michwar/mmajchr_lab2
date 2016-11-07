@@ -22,8 +22,10 @@ public class App extends Application implements Close, SimpleUserInterface {
 	private TextArea textOut;
 	private TextField textIn;
 	private Button btnOK;
+	private Semaphore mtxStr = new Semaphore(1, true);
 	private Semaphore semStr = new Semaphore(0, false);
 	private String inputStr;
+	private Semaphore mtxYN = new Semaphore(1, true);
 	private Semaphore semYN = new Semaphore(0, false);
 	private boolean inputYN;
 
@@ -97,9 +99,13 @@ public class App extends Application implements Close, SimpleUserInterface {
 	public String prompt(String promptMsg) {
 		for(;;) {
 			try {
-				show(promptMsg);
-				btnOK.setDisable(false);
+				mtxStr.acquire();
+				runOnUIThread(() -> {
+					show(promptMsg);
+					btnOK.setDisable(false);
+				});
 				semStr.acquire();
+				mtxStr.release();
 				return inputStr;
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -111,12 +117,14 @@ public class App extends Application implements Close, SimpleUserInterface {
 	public boolean promptYesNo(String promptMsg) {
 		for(;;) {
 			try {
+				mtxYN.acquire();
 				runOnUIThread(() -> {
 					Alert alert = new Alert(AlertType.CONFIRMATION, promptMsg, ButtonType.YES, ButtonType.NO);
 					inputYN = alert.showAndWait().map(ButtonType.YES::equals).orElse(false);
 					semYN.release();
 				});
 				semYN.acquire();
+				mtxYN.release();
 				return inputYN;
 			} catch (InterruptedException e) {
 				e.printStackTrace();
