@@ -3,6 +3,7 @@ package zpi_lab2.zpi_lab2;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import lab2lib.lab2lib.OnCloseCallback;
@@ -10,6 +11,7 @@ import lab2lib.lab2lib.OnCloseCallback;
 public class App extends Application implements Close {
 	
 	private OnCloseCallback onCloseCallback;
+	private TextArea textOut;
 
 	public static void main(String[] args) {
 		launch(args);
@@ -18,6 +20,9 @@ public class App extends Application implements Close {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		BorderPane root = new BorderPane();
+		textOut = new TextArea();
+		textOut.setEditable(false);
+		root.setCenter(textOut);
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
 		setExplicitExit(primaryStage);
