@@ -65,7 +65,7 @@ public class App extends Application implements Close, SimpleUserInterface {
 	}
 	
 	private void runMain() {
-		Main mainRun = new Main(SimpleConsole.getInstance(), this);
+		Main mainRun = new Main(this, this);
 		Thread mainThread = new Thread(mainRun, "Main app code thread.");
 		mainThread.setDaemon(true);
 		mainThread.start();
